@@ -24,7 +24,7 @@ app.post("/posts", async (req: Request, res: Response) => {
     title,
   };
 
-  await axios.post("http://localhost:5000/events", {
+  await axios.post("http://event-bus-srv:5000/events", {
     type: "PostCreated",
     data: {
       id,
@@ -37,5 +37,6 @@ app.post("/posts", async (req: Request, res: Response) => {
 });
 
 app.listen(5001, () => {
+  console.log('v2');
   console.log("Server in running on port:5001");
 });

@@ -52,7 +52,7 @@ app.get("/posts/:id/comments", (req, res) => {
       });
       foundcomment.status = status;
   
-      await axios.post("http://localhost:5000/events", {
+      await axios.post("http://event-bus-srv:5000/events", {
         type: "CommentUpdated",
         data: {
           id,
