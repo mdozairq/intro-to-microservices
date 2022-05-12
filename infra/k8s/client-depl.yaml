@@ -1,31 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus-depl
+  name: client-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: event-bus
+      app: client
   template:
     metadata:
       labels:
-        app: event-bus
+        app: client
     spec:
       containers:
-        - name: event-bus
-          image: mymymoq27/event-bus:0.0.1
+        - name: client
+          image: mymymoq27/client
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-srv
+  name: client-clusterip-srv
 spec:
   selector:
-    app: event-bus
+    app: client
   ports:
-    - name: event-bus
+    - name: client
       protocol: TCP
-      port: 5000
-      targetPort: 5000
-      
+      port: 3000
+      targetPort: 3000

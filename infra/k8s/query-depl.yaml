@@ -1,31 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus-depl
+  name: query-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: event-bus
+      app: query
   template:
     metadata:
       labels:
-        app: event-bus
+        app: query
     spec:
       containers:
-        - name: event-bus
-          image: mymymoq27/event-bus:0.0.1
+        - name: query
+          image: mymymoq27/query
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-srv
+  name: query-clusterip-srv
 spec:
   selector:
-    app: event-bus
+    app: query
   ports:
-    - name: event-bus
+    - name: query
       protocol: TCP
-      port: 5000
-      targetPort: 5000
-      
+      port: 5003
+      targetPort: 5003
